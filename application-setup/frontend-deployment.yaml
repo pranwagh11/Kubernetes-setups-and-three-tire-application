@@ -3,9 +3,9 @@ kind: Deployment
 
 metadata:
   name: frontend
+  namespace: todo-app
 
 spec:
-
   replicas: 2
 
   selector:
@@ -13,19 +13,24 @@ spec:
       app: frontend
 
   template:
-
     metadata:
       labels:
         app: frontend
 
     spec:
-
       containers:
-
       - name: frontend
-
-        image: username/todo-frontend:v1
+        image: prandocker01/frontend-todo
 
         ports:
-
         - containerPort: 80
+
+        volumeMounts:
+        - name: frontend-config
+          mountPath: /usr/share/nginx/html/configs.js
+          subPath: configs.js
+
+      volumes:
+      - name: frontend-config
+        configMap:
+          name: frontend-config

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+  namespace: todo-app
+
+data:
+  configs.js: |
+      const API = "http://13.200.243.162:32233"

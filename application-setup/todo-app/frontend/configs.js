@@ -1,1 +1,1 @@
-const API = "http://<NodePORT>:4000/tasks";
+const API = "http://localhost:4000/tasks";

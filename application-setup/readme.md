@@ -464,6 +464,30 @@ docker push username/todo-frontend:v1
 ```
 
 ---
+## 2.1 Create `frontend-config.yaml`
+
+We need to replace url in frontend to connect the backend to frontend
+
+Create a file named `frontend-config.yaml`:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+  namespace: todo-app
+
+data:
+  configs.js: |
+    const API = "http://<NodePort IP>:<Port>";
+```
+
+## Apply the ConfigMap
+
+```bash
+kubectl apply -f frontend-config.yaml
+```
+---
 
 # Step 3: Create Frontend Deployment
 
