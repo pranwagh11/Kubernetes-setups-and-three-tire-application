@@ -3,7 +3,7 @@ kind: Deployment
 
 metadata:
   name: backend
-
+  namespace: todo-app
 spec:
   replicas: 2
 
@@ -19,8 +19,6 @@ spec:
     spec:
       containers:
       - name: backend
-
-        image: username/todo-backend:v1
 
         ports:
         - containerPort: 4000

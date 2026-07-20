@@ -70,6 +70,45 @@ worker1       Ready
 ```
 
 ---
+## Create a PersistentVolume (PV)
+
+Create a file named `mysql-pv.yaml` with the following content:
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /mnt/mysql-data
+```
+
+### Create the storage directory on the node
+
+```bash
+sudo mkdir -p /mnt/mysql-data
+sudo chmod 777 /mnt/mysql-data
+```
+
+### Apply the PersistentVolume
+
+```bash
+kubectl apply -f mysql-pv.yaml
+```
+
+### Verify the PersistentVolume
+
+```bash
+kubectl get pv
+```
+
+---
 
 # Step 1: Create Database Namespace (Optional)
 
