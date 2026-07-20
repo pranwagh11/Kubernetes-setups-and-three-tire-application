@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Todo Keep App</title>
+
+  <script src="libs/tailwind.js"></script>
+  <link rel="stylesheet" href="style-min.css"></head><body class="app-bg min-h-screen text-gray-900 font-sans transition-colors duration-300">
+
+  <div class="flex flex-col md:flex-row min-h-screen w-full">
+    <aside class="sidebar w-full md:w-72 flex flex-col p-6 md:p-8 gap-8 border-b md:border-b-0 md:border-r border-gray-300">
+      <div class="logo text-2xl font-bold tracking-tight flex items-center gap-2">
+        <span class="text-amber-500 text-3xl">💡</span>
+        <span class="text-gray-900 font-bold">KeepPro</span>
+      </div>
+
+      <div class="stats flex flex-col gap-4">
+        <div class="stat group border border-gray-300 shadow-sm transition-all duration-300">
+          <h3>Total Tasks</h3>
+          <p id="total">0</p>
+        </div>
+
+        <div class="stat group border border-gray-300 shadow-sm transition-all duration-300">
+          <h3>Completed</h3>
+          <p id="done" class="text-emerald-700 font-extrabold">0</p>
+        </div>
+
+        <div class="stat group border border-gray-300 shadow-sm transition-all duration-300">
+          <h3>Pending</h3>
+          <p id="pending" class="text-amber-700 font-extrabold">0</p>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main flex-1 p-6 md:p-10  w-full flex flex-col gap-8">
+      
+      <header class="header flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+        <div>
+          <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 header-title">Task Dashboard</h1>
+          <p class="text-sm text-gray-700 font-medium mt-1">Capture what's on your mind.</p>
+        </div>
+        
+        <div class="flex items-center gap-3 w-full lg:w-auto">
+          <div class="relative flex-1 lg:w-72">
+            <input id="search" class="search w-full pl-4 pr-4 py-2.5 rounded-xl border border-gray-400 focus:border-amber-600 bg-gray-100 text-gray-900 placeholder-gray-600 font-medium outline-none transition-all duration-200 shadow-sm" placeholder="🔍 Search tasks..." />
+          </div>
+          <button id="themeBtn" class="theme-btn h-[46px] px-4 font-bold rounded-xl flex items-center justify-center gap-2 shadow-sm border border-gray-400 bg-white text-gray-900 hover:bg-gray-100 active:scale-95 transition-all duration-200 shrink-0">
+            🌙 Theme
+          </button>
+        </div>
+      </header>
+
+      <section class="card input-card collapsed-note p-6 border border-gray-300 shadow-sm cursor-pointer">
+        <div class="grid-2">
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-extrabold text-gray-900 tracking-wider uppercase">Task Title</label>
+            <input id="title" type="text" class="input w-full font-semibold" placeholder="Take a note..." />
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-extrabold text-gray-900 tracking-wider uppercase">Due Date</label>
+            <input id="date" type="date" class="input w-full font-bold" />
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-extrabold text-gray-900 tracking-wider uppercase">Priority</label>
+            <select id="priority" class="input w-full font-semibold cursor-pointer">
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-extrabold text-gray-900 tracking-wider uppercase">Category</label>
+            <select id="category" class="input w-full font-semibold cursor-pointer">
+              <option value="General">📌 General</option>
+              <option value="Work">💼 Work</option>
+              <option value="Study">📚 Study</option>
+              <option value="Personal">🏠 Personal</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="text-xs font-extrabold text-gray-900 tracking-wider uppercase">Description</label>
+          <textarea id="description" class="input textarea w-full font-medium" placeholder="Add extra details here..."></textarea>
+        </div>
+
+        <div class="actions pt-2">
+          <button id="addBtn" class="btn-primary">
+            ➕ Add Task
+          </button>
+          <button id="clearBtn" class="btn-secondary">
+            ✖ Clear
+          </button>
+        </div>
+
+        <div class="keep-burger">📍</div>
+      </section>
+
+      <section class="flex flex-col gap-3 p-5">
+        <h2 class="text-xs font-extrabold tracking-widest text-gray-700 uppercase mb-1">Your Checklist</h2>
+        <section id="list" class="task-list"></section>
+      </section>
+
+    </main>
+  </div>
+
+  <div id="toast" class="toast-box"></div>
+  <script src="configs.js"></script>
+  <script src="script-min.js"></script></body></html>
